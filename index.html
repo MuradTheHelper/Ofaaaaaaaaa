@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Social Links</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            padding: 20px;
+        }
+
+        .profile {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .profile img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 5px solid rgba(255, 255, 255, 0.3);
+            margin-bottom: 15px;
+            object-fit: cover;
+        }
+
+        .profile h1 {
+            color: white;
+            margin-bottom: 10px;
+            font-size: 2em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile p {
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .link-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            border-radius: 10px;
+            color: white;
+            text-decoration: none;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .link-card i {
+            font-size: 1.5em;
+            width: 30px;
+            text-align: center;
+        }
+
+        /* Different hover effects for each link */
+        .link-card.whatsapp:hover {
+            background: #25D366;
+            transform: scale(1.02) rotate(1deg);
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+        }
+
+        .link-card.instagram:hover {
+            background: linear-gradient(45deg, #405DE6, #5851DB, #833AB4, #C13584, #E1306C, #FD1D1D);
+            transform: scale(1.02) translateY(-3px);
+            box-shadow: 0 5px 15px rgba(225, 48, 108, 0.4);
+        }
+
+        .link-card.github:hover {
+            background: #333;
+            transform: scale(1.02) skewX(-3deg);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .link-card.linkedin:hover {
+            background: #0077B5;
+            transform: scale(1.02) translateX(5px);
+            box-shadow: 0 5px 15px rgba(0, 119, 181, 0.4);
+        }
+
+        .link-card.youtube:hover {
+            background: #FF0000;
+            transform: scale(1.02) rotateY(10deg);
+            box-shadow: 0 5px 15px rgba(255, 0, 0, 0.4);
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 15px;
+            }
+
+            .profile img {
+                width: 120px;
+                height: 120px;
+            }
+
+            .profile h1 {
+                font-size: 1.5em;
+            }
+
+            .profile p {
+                font-size: 1em;
+            }
+
+            .link-card {
+                padding: 12px 15px;
+                font-size: 1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="profile">
+            <img src="/api/placeholder/150/150" alt="Profile Picture">
+            <h1>John Doe</h1>
+            <p>Digital Creator & Web Developer</p>
+        </div>
+        
+        <div class="links">
+            <a href=https://wa.me/628112957571 class="link-card whatsapp" onclick="handleClick('whatsapp')">
+                <i class="fab fa-whatsapp"></i>
+                <span>Chat on WhatsApp</span>
+            </a>
+            
+            <a href=https://www.instagram.com/horrifyink/ class="link-card instagram" onclick="handleClick('instagram')">
+                <i class="fab fa-instagram"></i>
+                <span>Follow on Instagram</span>
+            </a>
+            
+            
+            <a href="#" class="link-card youtube" onclick="handleClick('youtube')">
+                <i class="fab fa-youtube"></i>
+                <span>Watch my Videos</span>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function handleClick(platform) {
+            const card = document.querySelector(`.link-card.${platform}`);
+            
+            // Add different click effects based on platform
+            switch(platform) {
+                case 'whatsapp':
+                    createRippleEffect(card);
+                    break;
+                case 'instagram':
+                    createSparkleEffect(card);
+                    break;
+                case 'github':
+                    createPulseEffect(card);
+                    break;
+                case 'linkedin':
+                    createShakeEffect(card);
+                    break;
+                case 'youtube':
+                    createBounceEffect(card);
+                    break;
+            }
+        }
+
+        function createRippleEffect(element) {
+            const ripple = document.createElement('span');
+            ripple.style.position = 'absolute';
+            ripple.style.border = '2px solid white';
+            ripple.style.borderRadius = '50%';
+            ripple.style.animation = 'ripple 0.6s linear';
+            ripple.style.pointerEvents = 'none';
+            
+            element.style.position = 'relative';
+            element.appendChild(ripple);
+            
+            setTimeout(() => ripple.remove(), 600);
+        }
+
+        function createSparkleEffect(element) {
+            element.style.animation = 'sparkle 0.5s ease';
+            setTimeout(() => element.style.animation = '', 500);
+        }
+
+        function createPulseEffect(element) {
+            element.style.animation = 'pulse 0.5s ease';
+            setTimeout(() => element.style.animation = '', 500);
+        }
+
+        function createShakeEffect(element) {
+            element.style.animation = 'shake 0.5s ease';
+            setTimeout(() => element.style.animation = '', 500);
+        }
+
+        function createBounceEffect(element) {
+            element.style.animation = 'bounce 0.5s ease';
+            setTimeout(() => element.style.animation = '', 500);
+        }
+
+        // Add these keyframes to your CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes ripple {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+            
+            @keyframes sparkle {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.1); }
+                100% { transform: scale(1); }
+            }
+            
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(0.95); }
+                100% { transform: scale(1); }
+            }
+            
+            @keyframes shake {
+                0%, 100% { transform: translateX(0); }
+                25% { transform: translateX(-5px); }
+                75% { transform: translateX(5px); }
+            }
+            
+            @keyframes bounce {
+                0%, 100% { transform: translateY(0); }
+                50% { transform: translateY(-10px); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
